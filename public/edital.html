@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edital de Inscrição - Street Race</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/edital.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .back-link {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e74c3c;
+            text-decoration: none;
+            padding: 12px 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid #e74c3c;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .logo-container {
+            margin: 20px 0;
+        }
+        
+        .logo-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .logo-small {
+            height: 80px;
+            width: auto;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 73, 94, 0.4);
+        }
+        
+        .captcha-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+        
+        .captcha-challenge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .captcha-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .captcha-input {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 80px;
+            text-align: center;
+        }
+        
+        .captcha-refresh {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .captcha-refresh:hover {
+            background: #2980b9;
+        }
+        
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+            <div class="logo-container">
+                <a href="/" class="logo-link">
+                    <img src="assets/logo.svg" alt="Street Race Logo" class="logo-small">
+                </a>
+            </div>
+            <h1 class="page-title">Edital de Inscrição</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2><i class="fas fa-clipboard-list"></i> Formulário de Candidatura</h2>
+                    <p>Preencha todos os campos abaixo para se candidatar à vaga na Street Race</p>
+                </div>
+                <form id="editalForm" class="edital-form">
+                    <div class="form-group">
+                        <label for="nomeCompleto"><i class="fas fa-user"></i> Nome Completo (in-game) *</label>
+                        <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passaporte"><i class="fas fa-id-card"></i> Passaporte (in-game) *</label>
+                        <input type="text" id="passaporte" name="passaporte" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone"><i class="fas fa-phone"></i> Telefone (in-game) *</label>
+                        <input type="text" id="telefone" name="telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discord"><i class="fab fa-discord"></i> Discord (exemplo: Nero Boss#7719) *</label>
+                        <input type="text" id="discord" name="discord" placeholder="Username#0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Qual horário você tem disponibilidade? *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Manhã">
+                                <span>🌅 Manhã</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Tarde">
+                                <span>☀️ Tarde</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Noite">
+                                <span>🌙 Noite</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Madrugada">
+                                <span>🌃 Madrugada</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-wrench"></i> Você tem experiência como mecânico? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="experiencia" value="Sim" required>
+                                <span>✅ Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="experiencia" value="Não" required>
+                                <span>❌ Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-user-friends"></i> Tem indicação? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="temIndicacao" value="Sim" required>
+                                <span>✅ Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="temIndicacao" value="Não" required>
+                                <span>❌ Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="indicacaoField" style="display: none;">
+                        <label for="indicacao"><i class="fas fa-user-plus"></i> Quem te indicou?</label>
+                        <input type="text" id="indicacao" name="indicacao">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-balance-scale"></i> Você possui ficha limpa na polícia? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="fichaLimpa" value="Sim" required>
+                                <span>✅ Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="fichaLimpa" value="Não" required>
+                                <span>❌ Não</span>
+                            </label>
+                        </div>
+                        <div id="fichaLimpaWarning" class="warning-message" style="display: none;">
+                            <div class="warning-content">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>
+                                    <h4>⚠️ Atenção: Ficha Limpa Obrigatória</h4>
+                                    <p>Para ser contratado na Street Race Mecânica é <strong>obrigatório</strong> possuir ficha limpa na polícia.</p>
+                                    <p>📋 <strong>Recomendação:</strong> Procure um advogado na cidade para realizar a limpeza da sua ficha antes de continuar com a inscrição.</p>
+                                    <p>💼 Após resolver a situação, você poderá se inscrever novamente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="regrasRP"><i class="fas fa-list-ul"></i> Cite 3 regras importantes no RP *</label>
+                        <textarea id="regrasRP" name="regrasRP" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="porqueEntrar"><i class="fas fa-question-circle"></i> Por que quer entrar na Street Race? *</label>
+                        <textarea id="porqueEntrar" name="porqueEntrar" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="objetivos"><i class="fas fa-target"></i> Quais seus objetivos depois de entrar na Street Race? *</label>
+                        <textarea id="objetivos" name="objetivos" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-shield-alt"></i> Verificação Anti-Bot *</label>
+                        <div class="captcha-container">
+                            <div class="captcha-challenge">
+                                <span class="captcha-question" id="captchaQuestion">Quanto é 2 + 3?</span>
+                                <input type="number" id="captchaInput" class="captcha-input" required>
+                                <button type="button" class="captcha-refresh" onclick="generateCaptcha()">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                            <small>Resolva a operação matemática acima para continuar</small>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Inscrição
+                        </button>
+                    </div>
+                </form>
+
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <h3>✅ Inscrição enviada com sucesso!</h3>
+                    <p>Sua candidatura foi recebida. Aguarde o contato da administração.</p>
+                    <a href="/" class="btn btn-secondary">
+                        <i class="fas fa-home"></i>
+                        Voltar à página inicial
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Street Race - Mecânica Automotiva | NordesteRP</p>
+            <p class="domain">mecnorte.com.br</p>
+        </footer>
+    </div>
+
+    <script>
+        let captchaAnswer = 0;
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const operations = ['+', '-', '×'];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            
+            let question, answer;
+            
+            switch(operation) {
+                case '+':
+                    question = `Quanto é ${num1} + ${num2}?`;
+                    answer = num1 + num2;
+                    break;
+                case '-':
+                    question = `Quanto é ${num1} - ${num2}?`;
+                    answer = num1 - num2;
+                    break;
+                case '×':
+                    question = `Quanto é ${num1} × ${num2}?`;
+                    answer = num1 * num2;
+                    break;
+            }
+            
+            document.getElementById('captchaQuestion').textContent = question;
+            document.getElementById('captchaInput').value = '';
+            captchaAnswer = answer;
+        }
+
+        generateCaptcha();
+
+        document.querySelectorAll('input[name="temIndicacao"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const indicacaoField = document.getElementById('indicacaoField');
+                const indicacaoInput = document.getElementById('indicacao');
+                if (this.value === 'Sim') {
+                    indicacaoField.style.display = 'block';
+                    indicacaoInput.required = true;
+                } else {
+                    indicacaoField.style.display = 'none';
+                    indicacaoInput.required = false;
+                    indicacaoInput.value = '';
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="fichaLimpa"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const warningElement = document.getElementById('fichaLimpaWarning');
+                if (this.value === 'Não') {
+                    warningElement.style.display = 'block';
+                    setTimeout(() => {
+                        warningElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 300);
+                } else {
+                    warningElement.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('editalForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const captchaValue = parseInt(document.getElementById('captchaInput').value);
+            if (captchaValue !== captchaAnswer) {
+                alert('❌ CAPTCHA incorreto! Por favor, resolva a operação matemática corretamente.');
+                generateCaptcha();
+                return;
+            }
+
+            // Validar horários
+            const horariosCheckbox = document.querySelectorAll('input[name="horario"]:checked');
+            if (horariosCheckbox.length === 0) {
+                alert('Por favor, selecione pelo menos um horário de disponibilidade.');
+                return;
+            }
+
+            const formData = new FormData(this);
+            const data = {};
+            data.nomeCompleto = formData.get('nomeCompleto');
+            data.passaporte = formData.get('passaporte');
+            data.telefone = formData.get('telefone');
+            data.discord = formData.get('discord');
+            data.experiencia = formData.get('experiencia');
+            data.temIndicacao = formData.get('temIndicacao');
+            data.indicacao = formData.get('indicacao') || '';
+            data.fichaLimpa = formData.get('fichaLimpa');
+            data.regrasRP = formData.get('regrasRP');
+            data.porqueEntrar = formData.get('porqueEntrar');
+            data.objetivos = formData.get('objetivos');
+            data.horarios = Array.from(horariosCheckbox).map(cb => cb.value).join(', ');
+
+            try {
+                const response = await fetch('/api/inscricao', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    document.getElementById('editalForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    window.scrollTo(0, 0);
+                } else {
+                    const error = await response.json();
+                    alert('Erro ao enviar inscrição: ' + (error.message || 'Tente novamente.'));
+                }
+            } catch (error) {
+                alert('Erro ao enviar inscrição. Verifique sua conexão e tente novamente.');
+                console.error('Erro:', error);
+            }
+        });
+    </script>
+</body>
+</html>

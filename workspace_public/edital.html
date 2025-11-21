@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edital de Inscrição - Street Race</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/edital.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="back-link">← Voltar</a>
+            <div class="logo-container">
+                <img src="assets/logo.svg" alt="Street Race Logo" class="logo-small">
+            </div>
+            <h1 class="page-title">Edital de Inscrição</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Formulário de Candidatura</h2>
+                    <p>Preencha todos os campos abaixo para se candidatar à vaga na Street Race</p>
+                </div>
+
+                <form id="editalForm" class="edital-form">
+                    <!-- Nome Completo -->
+                    <div class="form-group">
+                        <label for="nomeCompleto">Nome Completo (in-game) *</label>
+                        <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                    </div>
+
+                    <!-- Passaporte -->
+                    <div class="form-group">
+                        <label for="passaporte">Passaporte (in-game) *</label>
+                        <input type="text" id="passaporte" name="passaporte" required>
+                    </div>
+
+                    <!-- Telefone -->
+                    <div class="form-group">
+                        <label for="telefone">Telefone (in-game) *</label>
+                        <input type="text" id="telefone" name="telefone" required>
+                    </div>
+
+                    <!-- Discord -->
+                    <div class="form-group">
+                        <label for="discord">Discord (exemplo: Nero Boss#7719) *</label>
+                        <input type="text" id="discord" name="discord" placeholder="Username#0000" required>
+                    </div>
+
+                    <!-- Horário de Disponibilidade -->
+                    <div class="form-group">
+                        <label>Qual horário você tem disponibilidade? *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Manhã">
+                                <span>Manhã</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Tarde">
+                                <span>Tarde</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Noite">
+                                <span>Noite</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="horario" value="Madrugada">
+                                <span>Madrugada</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Experiência -->
+                    <div class="form-group">
+                        <label>Você tem experiência como mecânico? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="experiencia" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="experiencia" value="Não" required>
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Indicação -->
+                    <div class="form-group">
+                        <label>Tem indicação? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="temIndicacao" value="Sim" required>
+                                <span>Sim</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="temIndicacao" value="Não" required>
+                                <span>Não</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campo de Indicação (oculto inicialmente) -->
+                    <div class="form-group" id="indicacaoField" style="display: none;">
+                        <label for="indicacao">Quem te indicou?</label>
+                        <input type="text" id="indicacao" name="indicacao">
+                    </div>
+
+                    <!-- Regras do RP -->
+                    <div class="form-group">
+                        <label for="regrasRP">Cite 3 regras importantes no RP *</label>
+                        <textarea id="regrasRP" name="regrasRP" rows="5" required></textarea>
+                    </div>
+
+                    <!-- Por que quer entrar -->
+                    <div class="form-group">
+                        <label for="porqueEntrar">Por que quer entrar na Street Race? *</label>
+                        <textarea id="porqueEntrar" name="porqueEntrar" rows="5" required></textarea>
+                    </div>
+
+                    <!-- Objetivos -->
+                    <div class="form-group">
+                        <label for="objetivos">Quais seus objetivos depois de entrar na Street Race? *</label>
+                        <textarea id="objetivos" name="objetivos" rows="5" required></textarea>
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Enviar Inscrição</button>
+                    </div>
+                </form>
+
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <h3>✅ Inscrição enviada com sucesso!</h3>
+                    <p>Sua candidatura foi recebida. Aguarde o contato da administração.</p>
+                    <a href="index.html" class="btn btn-secondary">Voltar à página inicial</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Street Race - Mecânica Automotiva | NordesteRP</p>
+            <p class="domain">mecnorte.com.br</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mostrar/ocultar campo de indicação
+        document.querySelectorAll('input[name="temIndicacao"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const indicacaoField = document.getElementById('indicacaoField');
+                const indicacaoInput = document.getElementById('indicacao');
+                if (this.value === 'Sim') {
+                    indicacaoField.style.display = 'block';
+                    indicacaoInput.required = true;
+                } else {
+                    indicacaoField.style.display = 'none';
+                    indicacaoInput.required = false;
+                    indicacaoInput.value = '';
+                }
+            });
+        });
+
+        // Envio do formulário
+        document.getElementById('editalForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Validar horários
+            const horariosCheckbox = document.querySelectorAll('input[name="horario"]:checked');
+            if (horariosCheckbox.length === 0) {
+                alert('Por favor, selecione pelo menos um horário de disponibilidade.');
+                return;
+            }
+
+            // Coletar dados do formulário
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Campos simples
+            data.nomeCompleto = formData.get('nomeCompleto');
+            data.passaporte = formData.get('passaporte');
+            data.telefone = formData.get('telefone');
+            data.discord = formData.get('discord');
+            data.experiencia = formData.get('experiencia');
+            data.temIndicacao = formData.get('temIndicacao');
+            data.indicacao = formData.get('indicacao') || '';
+            data.regrasRP = formData.get('regrasRP');
+            data.porqueEntrar = formData.get('porqueEntrar');
+            data.objetivos = formData.get('objetivos');
+            
+            // Horários (múltiplos)
+            data.horarios = Array.from(horariosCheckbox).map(cb => cb.value).join(', ');
+
+            try {
+                const response = await fetch('/api/inscricao', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    document.getElementById('editalForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    window.scrollTo(0, 0);
+                } else {
+                    const error = await response.json();
+                    alert('Erro ao enviar inscrição: ' + (error.message || 'Tente novamente.'));
+                }
+            } catch (error) {
+                alert('Erro ao enviar inscrição. Verifique sua conexão e tente novamente.');
+                console.error('Erro:', error);
+            }
+        });
+    </script>
+</body>
+</html>

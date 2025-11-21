@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mecanica-web:
+    build: .
+    container_name: mecanica-street-race
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./database:/app/database
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SESSION_SECRET=change-this-secret-in-production
+    restart: unless-stopped
+    networks:
+      - mecanica-network
+
+networks:
+  mecanica-network:
+    driver: bridge

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Street Race</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="assets/logo.svg" alt="Street Race Logo" class="logo-small">
+            </div>
+            <h1 class="login-title">Painel Administrativo</h1>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+            <a href="index.html" class="back-link">← Voltar à página inicial</a>
+        </div>
+    </div>
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <header class="admin-header">
+            <div class="container">
+                <div class="admin-header-content">
+                    <h1 class="admin-title">Painel Administrativo</h1>
+                    <div class="admin-actions">
+                        <span class="admin-user">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="adminUsername"></span>
+                        </span>
+                        <button id="createUserBtn" class="btn btn-primary btn-small">
+                            <i class="fas fa-user-plus"></i>
+                            Criar Usuário
+                        </button>
+                        <button id="changePasswordBtn" class="btn btn-secondary btn-small">
+                            <i class="fas fa-key"></i>
+                            Alterar Senha
+                        </button>
+                        <button id="logoutBtn" class="btn btn-secondary btn-small">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="panel-content">
+                <div class="panel-header">
+                    <h2>Inscrições Recebidas</h2>
+                    <div class="panel-controls">
+                        <div class="status-filters">
+                            <span class="filter-label">
+                                <i class="fas fa-filter"></i>
+                                Filtrar por status:
+                            </span>
+                            <button class="filter-btn active" data-filter="todos">
+                                <i class="fas fa-list"></i>
+                                Todos
+                            </button>
+                            <button class="filter-btn" data-filter="a_analisar">
+                                <i class="fas fa-clock"></i>
+                                A Analisar
+                            </button>
+                            <button class="filter-btn" data-filter="aprovado">
+                                <i class="fas fa-check-circle"></i>
+                                Aprovados
+                            </button>
+                            <button class="filter-btn" data-filter="reprovado">
+                                <i class="fas fa-times-circle"></i>
+                                Reprovados
+                            </button>
+                        </div>
+                        <div class="stats">
+                            <span class="stat-badge">
+                                <i class="fas fa-hashtag"></i>
+                                Total: <strong id="totalInscricoes">0</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="inscricoesContainer" class="inscricoes-container">
+                    <p class="loading">Carregando inscrições...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="passwordModal" class="modal" style="display: none;">
+        <div class="modal-content password-modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h2>Alterar Senha</h2>
+                <p class="modal-subtitle">Mantenha sua conta segura com uma senha forte</p>
+            </div>
+            
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="currentPassword">
+                        <i class="fas fa-unlock-alt"></i>
+                        Senha Atual
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="currentPassword" required placeholder="Digite sua senha atual">
+                        <button type="button" class="toggle-password" data-target="currentPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newPassword">
+                        <i class="fas fa-lock"></i>
+                        Nova Senha
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="newPassword" required placeholder="Digite a nova senha (mín. 6 caracteres)">
+                        <button type="button" class="toggle-password" data-target="newPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Digite uma senha</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        <i class="fas fa-check-circle"></i>
+                        Confirmar Nova Senha
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="confirmPassword" required placeholder="Confirme a nova senha">
+                        <button type="button" class="toggle-password" data-target="confirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="password-requirements">
+                    <h4>
+                        <i class="fas fa-info-circle"></i>
+                        Requisitos da Senha:
+                    </h4>
+                    <ul>
+                        <li id="req-length"><i class="fas fa-circle"></i> Mínimo 6 caracteres</li>
+                        <li id="req-letter"><i class="fas fa-circle"></i> Pelo menos uma letra</li>
+                        <li id="req-number"><i class="fas fa-circle"></i> Pelo menos um número</li>
+                    </ul>
+                </div>
+                
+                <div id="passwordError" class="error-message"></div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelPasswordBtn">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Salvar Senha
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="createUserModal" class="modal" style="display: none;">
+        <div class="modal-content create-user-modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>Criar Novo Usuário</h2>
+                <p class="modal-subtitle">Adicione um novo administrador ao sistema</p>
+            </div>
+            
+            <form id="createUserForm">
+                <div class="form-group">
+                    <label for="newUsername">
+                        <i class="fas fa-user"></i>
+                        Nome de Usuário
+                    </label>
+                    <input type="text" id="newUsername" required placeholder="Digite o nome de usuário" autocomplete="off">
+                    <div class="field-hint">
+                        <i class="fas fa-info-circle"></i>
+                        Apenas letras, números e _ (underscore)
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userPassword">
+                        <i class="fas fa-lock"></i>
+                        Senha
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="userPassword" required placeholder="Digite a senha (mín. 6 caracteres)">
+                        <button type="button" class="toggle-password" data-target="userPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="userStrengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="userStrengthText">Digite uma senha</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userConfirmPassword">
+                        <i class="fas fa-check-circle"></i>
+                        Confirmar Senha
+                    </label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="userConfirmPassword" required placeholder="Confirme a senha">
+                        <button type="button" class="toggle-password" data-target="userConfirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="user-permissions">
+                    <h4>
+                        <i class="fas fa-shield-alt"></i>
+                        Permissões do Usuário:
+                    </h4>
+                    <div class="permission-item">
+                        <input type="checkbox" id="canViewInscricoes" checked disabled>
+                        <label for="canViewInscricoes">
+                            <i class="fas fa-eye"></i>
+                            Ver inscrições
+                        </label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="canDeleteInscricoes" checked disabled>
+                        <label for="canDeleteInscricoes">
+                            <i class="fas fa-trash"></i>
+                            Excluir inscrições
+                        </label>
+                    </div>
+                    <div class="permission-item">
+                        <input type="checkbox" id="canManageUsers">
+                        <label for="canManageUsers">
+                            <i class="fas fa-users-cog"></i>
+                            Gerenciar usuários (criar/editar)
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="createUserError" class="error-message"></div>
+                <div id="createUserSuccess" class="success-message"></div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelCreateUserBtn">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Criar Usuário
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
